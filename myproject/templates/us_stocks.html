@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Bar</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Navigation bar styles */
+.navbar {
+  overflow: hidden;
+  background-color: #333; /* Background color */
+}
+
+/* Links inside the navigation bar */
+.navbar a {
+  float: right; /* Move links to the right side */
+  display: block;
+  color: white; /* Text color */
+  text-align: center;
+  margin: 0;
+  padding: 14px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s; /* Transition effect on background color */
+}
+
+/* Change background color on hover */
+.navbar a:hover {
+  background-color: #ddd; /* Background color on hover */
+  color: black; /* Text color on hover */
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeInAnimation {
+  animation: fadeIn 1s;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .navbar a {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+@keyframes blinkBackground {
+  0%, 49.9%, 100% { background-color: #f2f2f2; }
+  50%, 99.9% { background-color: #ffcc00; }
+}
+
+/* Apply styles and animations to the container */
+.container {
+  position: relative;
+  width: 100%;
+  height: 50px; /* Adjust height as needed */
+  background-color: #f2f2f2;
+  overflow: hidden; /* Hide overflowing text */
+  animation: blinkBackground 2s infinite; /* Apply background blink animation */
+}
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .navbar a {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+@keyframes blinkBackground {
+  0%, 49.9%, 100% { background-color: #f2f2f2; }
+  50%, 99.9% { background-color: #ffcc00; }
+}
+
+/* Apply styles and animations to the container */
+.container {
+  position: relative;
+  width: 100%;
+  height: 50px; /* Adjust height as needed */
+  background-color: #f2f2f2;
+  overflow: hidden; /* Hide overflowing text */
+  animation: blinkBackground 2s infinite; /* Apply background blink animation */
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <a href="{% url 'predicted_stock' %}" class="active">Predicted Stock</a>
+  <a href="{% url 'news' %}" class="active">News</a>
+  <a href="{% url 'us_stocks' %}">US Stock</a>
+  <a href="{% url 'indian_stock' %}">Indian Stock</a>
+  <a href="{% url 'index' %}" style="float: left;">TRADING VISTA</a>
+</div>
+
+<!-- Add animation to the navigation bar -->
+<script>
+  document.querySelector('.navbar').classList.add('fadeInAnimation');
+</script>
+
+
+</body>
+</html>
+
+
+ <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "description": "",
+      "proName": "NASDAQ:TSLA"
+    },
+    {
+      "description": "",
+      "proName": "NASDAQ:AAPL"
+    },
+    {
+      "description": "",
+      "proName": "NASDAQ:NVDA"
+    },
+    {
+      "description": "",
+      "proName": "NASDAQ:AMZN"
+    },
+    {
+      "description": "",
+      "proName": "NASDAQ:META"
+    },
+    {
+      "description": "",
+      "proName": "NASDAQ:NFLX"
+    }
+  ],
+  "showSymbolLogo": true,
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "colorTheme": "light",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container"style="float: right; margin-top: 20px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">MARKET MOMENTUM</p>
+  </div>  
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+  {
+  "colorTheme": "light",
+  "dateRange": "12M",
+  "exchange": "US",
+  "showChart": true,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": false,
+  "showFloatingTooltip": false,
+  "width": "700",
+  "height": "600",
+  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+  "gridLineColor": "rgba(240, 243, 250, 0)",
+  "scaleFontColor": "rgba(106, 109, 120, 1)",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="margin-top: 20px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">WATCHLIST</p>
+  </div>
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "colorTheme": "light",
+  "dateRange": "12M",
+  "showChart": true,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": true,
+  "showFloatingTooltip": false,
+  "width": "700",
+  "height": "600",
+  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+  "gridLineColor": "rgba(240, 243, 250, 0)",
+  "scaleFontColor": "rgba(106, 109, 120, 1)",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+  "tabs": [
+    {
+      "title": "STOCKS",
+      "symbols": [
+        {
+          "s": "NASDAQ:TSLA"
+        },
+        {
+          "s": "NASDAQ:AAPL"
+        },
+        {
+          "s": "NASDAQ:NVDA"
+        },
+        {
+          "s": "NYSE:BABA"
+        },
+        {
+          "s": "NASDAQ:MSTR"
+        },
+        {
+          "s": "NASDAQ:ARM"
+        },
+        {
+          "s": "NYSE:DIS"
+        },
+        {
+          "s": "NYSE:NKE"
+        },
+        {
+          "s": "NASDAQ:RIOT"
+        },
+        {
+          "s": "NASDAQ:CRWD"
+        }
+      ]
+    },
+    {
+      "title": "INDICS",
+      "symbols": [
+        {
+          "s": "TVC:DXY"
+        },
+        {
+          "s": "SP:SPX"
+        },
+        {
+          "s": "TVC:VIX"
+        },
+        {
+          "s": "CAPITALCOM:US100"
+        },
+        {
+          "s": "CAPITALCOM:US100"
+        },
+        {
+          "s": "NASDAQ:NDX"
+        },
+        {
+          "s": "CBOE:VIX"
+        },
+        {
+          "s": "TVC:TNX"
+        },
+        {
+          "s": "CBOE:VVIX"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container"style="margin-top: 90px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">USA STOCK MARKET MACROLENS</p>
+  </div>
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+  {
+  "exchanges": [],
+  "dataSource": "SPX500",
+  "grouping": "sector",
+  "blockSize": "market_cap_basic",
+  "blockColor": "change",
+  "locale": "en",
+  "symbolUrl": "",
+  "colorTheme": "light",
+  "hasTopBar": false,
+  "isDataSetEnabled": false,
+  "isZoomEnabled": true,
+  "hasSymbolTooltip": true,
+  "width": 1425,
+  "height": 500
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="margin-top: 80px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">INSIGHT SORTER</p>
+  </div>
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+  {
+  "width": "1440",
+  "height": "700",
+  "defaultColumn": "overview",
+  "defaultScreen": "most_capitalized",
+  "market": "america",
+  "showToolbar": true,
+  "colorTheme": "light",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container"style="margin-top: 70px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">USA ECNOMIC CALENDER</p>
+  </div>  
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+  {
+  "colorTheme": "light",
+  "isTransparent": false,
+  "width": "400",
+  "height": "550",
+  "locale": "en",
+  "importanceFilter": "-1,0,1",
+  "countryFilter": "us"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="margin-left: 420px; margin-top: -550px;">
+  <div class="container">
+    <!-- Place the text inside a container with the "slide-text" class -->
+    <p style="text-align: center;">NEWS</p>
+  </div>  
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+  {
+  "feedMode": "all_symbols",
+  "isTransparent": false,
+  "displayMode": "regular",
+  "width": "1010",
+  "height": "550",
+  "colorTheme": "light",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Vista</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('your-gif-url.gif'); /* Replace 'your-gif-url.gif' with the URL of your GIF */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Navigation bar styles */
+    .navbar {
+      overflow: hidden;
+      background-color: #333; /* Background color */
+    }
+
+    /* Links inside the navigation bar */
+    .navbar a {
+      float: right; /* Move links to the right side */
+      display: block;
+      color: white; /* Text color */
+      text-align: center;
+      margin: 0;
+      padding: 14px 20px; /* Padding */
+      text-decoration: none; /* Remove underline */
+      transition: background-color 0.3s; /* Transition effect on background color */
+    }
+
+    /* Change background color on hover */
+    .navbar a:hover {
+      background-color: #ddd; /* Background color on hover */
+      color: black; /* Text color on hover */
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fadeInAnimation {
+      animation: fadeIn 1s;
+    }
+
+    /* Stock Information Dropdown styles */
+    .container {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .stock-info-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 30px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s ease;
+      font-size: 16px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #66afe9;
+    }
+
+    .info-container {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      height: auto;
+      overflow-y: auto;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    #stockInfoDisplay {
+      height: 150px; /* Set initial height */
+      overflow: hidden; /* Hide overflow */
+      position: relative; /* Relative positioning for loading animation */
+    }
+
+    #loadingAnimation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #additionalInfoDisplay {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #additionalInfoDisplay img {
+      display: block;
+      margin: auto;
+      margin-top: 20px;
+      max-width: 80%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar fadeInAnimation">
+  <a href="{% url 'predicted_stock' %}" class="active">Predicted Stock</a>
+  <a href="{% url 'news' %}" class="active">News</a>
+  <a href="{% url 'us_stocks' %}">US Stock</a>
+  <a href="{% url 'indian_stock' %}">Indian Stock</a>
+  <a href="{% url 'index' %}" style="float: left;">TRADING VISTA</a>
+</div>
+
+<!-- Stock Information Dropdown -->
+<div class="container">
+  <div class="stock-info-container">
+    <h1>Stock Information</h1>
+<h1>Prediction Result:</h1>
+    <p>{{ prediction_result }}</p>
+    <form id="stockForm" method="POST" action="/your-action-url/">
+    <select id="stockDropdown" name="selectedStock">
+        <option value="">Select a stock</option>
+        <optgroup label="Indian Stock">
+            <option value="Tata Motors">Tata Motors</option>
+            <option value="Reliance Industries">Reliance Industries</option>
+            <option value="HDFC Bank">HDFC Bank</option>
+            <option value="Bharti Airtel">Bharti Airtel</option>
+            <option value="ITC">ITC</option>
+        </optgroup>
+        <optgroup label="US Stock">
+            <option value="Apple">Apple</option>
+            <option value="Microsoft">Microsoft</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Paypal">Paypal</option>
+        </optgroup>
+    </select>
+
+</form>
+
+
+
+    <div class="info-container">
+      <div id="stockInfoDisplay">
+        <!-- Loading animation will be displayed here -->
+      </div>
+      <div id="additionalInfoDisplay">
+        <!-- Additional Information heading will be added here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("stockDropdown").addEventListener("change", function() {
+    var selectedStock = this.value;
+    var stockInfoDisplay = document.getElementById("stockInfoDisplay");
+    var additionalInfoDisplay = document.getElementById("additionalInfoDisplay");
+    
+    // Display loading animation
+    stockInfoDisplay.innerHTML = '<div id="loadingAnimation" class="loader"></div>';
+    
+    // Simulate loading delay (you can replace this with actual data fetching)
+    setTimeout(function() {
+      // Define information about each stock
+      var stockInfo = {
+        "Tata Motors": {
+          "info": "Industry: Automotive <br> Headquarters: Mumbai, Maharashtra, India <br> CEO: Guenter Butschek",
+          "image": "templates/image/tata_motor_logo.png",
+          "link": "templates/tatamotors.html"
+        },
+        "Reliance Industries": {
+          "info": "Industry: Conglomerate <br> Headquarters: Mumbai, Maharashtra, India <br> CEO: Mukesh Ambani",
+          "image": "templates/image/Reliance_Industries_Logo.svg.png",
+          "link": "templates/relaince.htm"
+        },
+        "HDFC Bank": {
+          "info": "Industry: Financial Services <br> Headquarters: Mumbai, Maharashtra, India <br> CEO: Sashidhar Jagdishan",
+          "image": "templates/image/hdfc_logo.png",
+          "link": "templates/hdfc.htm"
+        },
+        "Bharti Airtel": {
+          "info": "Industry: Telecommunications <br> Headquarters: New Delhi, India <br> CEO: Gopal Vittal",
+          "image": "templates/image/Bharti_Airtel_Logo.svg.png",
+          "link": "templates/airtel.htm"
+        },
+        "ITC": {
+          "info": "Industry: Conglomerate <br> Headquarters: Kolkata, West Bengal, India <br> CEO: Sanjiv Puri",
+          "image": "templates/image/itc_logo.png",
+          "link": "templates/itc.htm"
+        },
+        "Apple": {
+          "info": "Industry: Technology <br> Headquarters: Cupertino, California, United States <br> CEO: Tim Cook",
+          "image": "templates/image/apple_logo.png",
+          "link": "templates/apple.html"
+        },
+        "Microsoft": {
+          "info": "Industry: Technology <br> Headquarters: Redmond, Washington, United States <br> CEO: Satya Nadella",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png",
+          "link": "templates/microsoft.htm"
+        },
+        "Amazon": {
+          "info": "Industry: Technology <br> Headquarters: Seattle, Washington, United States <br> CEO: Jeff Bezos",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png",
+          "link": "templates/amazon.html"
+        },
+        "Tesla": {
+          "info": "Industry: Automotive <br> Headquarters: Palo Alto, California, United States <br> CEO: Elon Musk",
+          "image": "templates/image/tesla_logo.png",
+          "link": "templates/tesla.htm"
+        },
+        "Paypal": {
+          "info": "Industry: Entertainment <br> Headquarters: Burbank, California, United States <br> CEO: Bob Chapek",
+          "image": "templates/image/paypal_logo.webp",
+          "link": "templates/https://example.com/disney-info"
+        }
+        // Add information for other stocks here...
+      };
+
+      var selectedStockInfo = stockInfo[selectedStock] || {};
+      
+      // Display stock information
+      var stockInfoContent = document.createElement("div");
+      stockInfoContent.innerHTML = selectedStockInfo.info || "";
+      stockInfoDisplay.innerHTML = ""; // Clear loading animation
+      stockInfoDisplay.appendChild(stockInfoContent);
+      
+      // Display stock image and additional information if available
+      if (selectedStockInfo.image) {
+        var stockImageLink = document.createElement("a");
+        stockImageLink.href = selectedStockInfo.link || "#"; // Default to "#" if link is not provided
+        var stockImage = document.createElement("img");
+        stockImage.src = selectedStockInfo.image;
+        stockImageLink.appendChild(stockImage);
+        additionalInfoDisplay.innerHTML = "<div class='additional-info'>Additional Information</div>"; // Add additional information heading
+        additionalInfoDisplay.appendChild(stockImageLink);
+      } else {
+        additionalInfoDisplay.innerHTML = ""; // Clear additional information if no image is available
+      }
+    }, 1000); // Simulated loading delay of 1 second
+  });
+</script>
+
+</body>
+</html>

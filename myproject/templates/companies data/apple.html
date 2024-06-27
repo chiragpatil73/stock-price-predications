@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Bar</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Navigation bar styles */
+.navbar {
+  overflow: hidden;
+  background-color: #333; /* Background color */
+}
+
+/* Links inside the navigation bar */
+.navbar a {
+  float: right; /* Move links to the right side */
+  display: block;
+  color: white; /* Text color */
+  text-align: center;
+  margin: 0;
+  padding: 14px 20px; /* Padding */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s; /* Transition effect on background color */
+}
+
+/* Change background color on hover */
+.navbar a:hover {
+  background-color: #ddd; /* Background color on hover */
+  color: black; /* Text color on hover */
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeInAnimation {
+  animation: fadeIn 1s;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .navbar a {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <a href="predicted_stock.html" class="active">Predicted Stock</a>
+  <a href="news.html" class="active">News</a>
+  <a href="us_stocks.html">US Stock</a>
+  <a href="indian_stock.html">Indian Stock</a>
+  <a href="index.html" style="float: left;">TRADING VISTA</a>
+</div>
+
+<!-- Add animation to the navigation bar -->
+<script>
+  document.querySelector('.navbar').classList.add('fadeInAnimation');
+</script>
+
+
+</body>
+</html>
+
+
+<!-- TradingView Widget BEGIN -->
+
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+    {
+    "symbol": "NASDAQ:AAPL",
+    "width": "100%",
+    "locale": "en",
+    "colorTheme": "light",
+    "isTransparent": false
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="height:100%;width:100%">
+    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+    "autosize": true,
+    "symbol": "NASDAQ:AAPL",
+    "interval": "60",
+    "timezone": "Etc/UTC",
+    "theme": "light",
+    "style": "1",
+    "locale": "en",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "calendar": false,
+    "support_host": "https://www.tradingview.com"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js" async>
+    {
+    "width": "100%",
+    "height": "50%",
+    "isTransparent": false,
+    "colorTheme": "light",
+    "symbol": "NASDAQ:AAPL",
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
+    {
+    "isTransparent": false,
+    "largeChartUrl": "",
+    "displayMode": "regular",
+    "width": "100%",
+    "height": "100%",
+    "colorTheme": "light",
+    "symbol": "NASDAQ:AAPL",
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+    {
+    "interval": "1m",
+    "width": 700,
+    "isTransparent": false,
+    "height": 450,
+    "symbol": "NASDAQ:AAPL",
+    "showIntervalTabs": true,
+    "displayMode": "single",
+    "locale": "en",
+    "colorTheme": "light"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="margin-left: 700px; margin-top: -450px;">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+    {
+    "feedMode": "all_symbols",
+    "isTransparent": false,
+    "displayMode": "regular",
+    "width": 725,
+    "height": 450,
+    "colorTheme": "light",
+    "locale": "en"
+
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
